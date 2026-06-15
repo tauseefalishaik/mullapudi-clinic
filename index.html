@@ -531,9 +531,13 @@
         }
 
         /* Mobile Phones Only */
-        @media (max-width: 767px) {
+         @media (max-width: 767px) {
+            .brand-wrapper {
+                margin-left: 10px; /* Gives a little safe breathing room on the left edge */
+            }
             .brand-logo {
-                height: 40px; 
+                height: 40px; /* Keeps the navbar thin */
+                transform: scale(1.5); /* <-- INCREASES VISUAL SIZE ON MOBILE */
             }
             .hero-section, .services-section, .about-section, .testimonials-section {
                 padding: 50px 0; 
