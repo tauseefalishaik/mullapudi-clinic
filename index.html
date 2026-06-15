@@ -48,40 +48,45 @@
         }
 
         /* Navbar */
-         .navbar {
+        .navbar {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            padding-top: 5px; /* Keeps the white bar thin */
+            padding-top: 5px; 
             padding-bottom: 5px;
         }
+        
+        /* LOGO DESKTOP STYLES */
+        .brand-wrapper {
+            margin-left: -30px;
+            margin-right: 50px;
+        }
         .brand-logo {
-            height: 75px; /* Adjust this number to make logo bigger/smaller safely */
+            height: 50px; 
             width: auto; 
-            max-width: 250px;
             object-fit: contain;
+            transform: scale(1.8);
+            transform-origin: left center;
             transition: 0.3s ease;
         }
+
         .nav-link {
             font-weight: 500;
             color: var(--dark-blue) !important;
-            margin: 0 8px; /* Safer margins */
-            white-space: nowrap; /* CRITICAL: Stops 'About Us' from breaking into 2 lines */
+            margin: 0 10px;
+            white-space: nowrap; 
             transition: 0.3s;
-        }
-         .nav-btn {
-            white-space: nowrap;
-        }
-        @media (max-width: 991px) {
-            .nav-btn {
-                width: 100%;
-                text-align: center;
-                display: block;
-            }
         }
         .nav-link:hover, .nav-link.active {
             color: var(--primary-teal) !important;
         }
+        
+        /* NAVIGATION BUTTON STYLES */
+        .nav-btn {
+            white-space: nowrap;
+            width: max-content; /* Keeps button short on desktop */
+        }
+        
         .btn-teal {
             background-color: var(--primary-teal);
             color: white;
@@ -480,8 +485,25 @@
         
         /* Tablets & Mobile Landscape */
         @media (max-width: 991px) {
+            .brand-wrapper {
+                margin-left: 0; /* Reset margins on mobile */
+                margin-right: 0;
+            }
             .brand-logo {
-                height: 65px; /* Shrink logo on smaller screens */
+                height: 45px; /* Safely size logo for mobile */
+                transform: scale(1.1); /* Slight boost, not 1.8x */
+            }
+            .nav-btn {
+                width: 100%; /* Make button full width on mobile menu */
+                text-align: center;
+                display: block;
+            }
+            .navbar-collapse {
+                background: white;
+                padding: 1rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                margin-top: 10px;
             }
             .stat-item {
                 border-right: none;
@@ -492,9 +514,8 @@
                 font-size: 2.5rem;
             }
             .quick-actions {
-                display: none; /* Hide floating quick actions on tablet/mobile */
+                display: none; 
             }
-            /* Fix floating card from causing horizontal scroll */
             .floating-contact {
                 top: auto;
                 bottom: -25px;
@@ -502,26 +523,20 @@
                 left: 0;
                 margin: auto;
                 width: max-content;
+                max-width: 90%;
             }
             .hero-img-wrapper {
                 margin-bottom: 40px;
-            }
-            .navbar-collapse {
-                background: white;
-                padding: 1rem;
-                border-radius: 10px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-                margin-top: 10px;
             }
         }
 
         /* Mobile Phones Only */
         @media (max-width: 767px) {
             .brand-logo {
-                height: 55px; /* Even smaller logo for mobile */
+                height: 40px; 
             }
             .hero-section, .services-section, .about-section, .testimonials-section {
-                padding: 50px 0; /* Reduce massive spacing on mobile */
+                padding: 50px 0; 
             }
             .hero-title {
                 font-size: 2rem;
@@ -531,15 +546,15 @@
                 text-align: center;
             }
             .hero-section .d-flex.gap-3 {
-                flex-direction: column; /* Stack buttons vertically */
+                flex-direction: column; 
                 align-items: center;
             }
             .hero-section .btn {
                 width: 100%;
-                max-width: 280px; /* Uniform button widths */
+                max-width: 280px; 
             }
             .hero-features {
-                justify-content: center; /* Center icons */
+                justify-content: center; 
             }
             .section-title {
                 font-size: 1.75rem;
@@ -591,13 +606,15 @@
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-          <a class="navbar-brand" href="#" style="margin-left: -30px; margin-right: 50px;">
-    <img src="header (2).png" alt="Mullapudi Dental Clinic Logo" style="height: 50px; width: auto; object-fit: contain; transform: scale(1.8); transform-origin: left center;">
-</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand brand-wrapper" href="#">
+                <img src="header (2).png" alt="Mullapudi Dental Clinic Logo" class="brand-logo">
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-     <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
@@ -619,7 +636,7 @@
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                 </ul>
-                <a href="#appointment" class="btn btn-teal ms-lg-4 mt-3 mt-lg-0" style="width: max-content;"><i class="fa-regular fa-calendar-check me-2"></i>Book Appointment</a>
+                <a href="#appointment" class="btn btn-teal nav-btn ms-lg-4 mt-3 mt-lg-0"><i class="fa-regular fa-calendar-check me-2"></i>Book Appointment</a>
             </div>
         </div>
     </nav>
@@ -1071,7 +1088,7 @@
         AOS.init({
             duration: 800,
             once: true,
-            offset: 50 // reduced offset for earlier triggering on mobile
+            offset: 50 
         });
 
         // Initialize Swiper for Testimonials
@@ -1137,9 +1154,7 @@
         // Handle Form Submission
         function handleFormSubmit(e) {
             e.preventDefault();
-            // Reset form
             e.target.reset();
-            // Show success toast
             const toastElement = document.getElementById('successToast');
             const toast = new bootstrap.Toast(toastElement);
             toast.show();
