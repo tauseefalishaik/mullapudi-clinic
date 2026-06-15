@@ -54,11 +54,13 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
         .brand-logo {
-            height: 95px; 
-            width: auto; 
-            object-fit: contain;
-            transition: height 0.3s ease;
-        }
+    height: 60px; /* This keeps the white bar at a normal, clean size */
+    width: auto; 
+    object-fit: contain;
+    transform: scale(1.6); /* <-- THIS MAKES ONLY THE LOGO BIGGER */
+    transform-origin: left center; /* Keeps it perfectly aligned to the left */
+    transition: 0.3s ease;
+}
         .nav-link {
             font-weight: 500;
             color: var(--dark-blue) !important;
@@ -577,9 +579,9 @@
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-          <a class="navbar-brand" href="#">
-    <img src="header (2).png" alt="Mullapudi Dental Clinic Logo" style="height: 90px; width: auto; object-fit: contain;">
-</a>
+           <a class="navbar-brand" href="#">
+               <img src="header (2).png" alt="Mullapudi Dental Clinic Logo" class="brand-logo">
+           </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
