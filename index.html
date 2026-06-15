@@ -53,8 +53,11 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-        .navbar-brand img {
-            height: 50px;
+        .brand-logo {
+            height: 95px; 
+            width: auto; 
+            object-fit: contain;
+            transition: height 0.3s ease;
         }
         .nav-link {
             font-weight: 500;
@@ -457,7 +460,15 @@
             font-weight: bold;
         }
 
+        /* ========================================= */
+        /* RESPONSIVE DESIGN FIXES FOR MOBILE VIEWS  */
+        /* ========================================= */
+        
+        /* Tablets & Mobile Landscape */
         @media (max-width: 991px) {
+            .brand-logo {
+                height: 65px; /* Shrink logo on smaller screens */
+            }
             .stat-item {
                 border-right: none;
                 border-bottom: 1px solid rgba(255,255,255,0.2);
@@ -467,7 +478,82 @@
                 font-size: 2.5rem;
             }
             .quick-actions {
-                display: none; /* Hide quick actions on mobile for better UX */
+                display: none; /* Hide floating quick actions on tablet/mobile */
+            }
+            /* Fix floating card from causing horizontal scroll */
+            .floating-contact {
+                top: auto;
+                bottom: -25px;
+                right: 0;
+                left: 0;
+                margin: auto;
+                width: max-content;
+            }
+            .hero-img-wrapper {
+                margin-bottom: 40px;
+            }
+            .navbar-collapse {
+                background: white;
+                padding: 1rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                margin-top: 10px;
+            }
+        }
+
+        /* Mobile Phones Only */
+        @media (max-width: 767px) {
+            .brand-logo {
+                height: 55px; /* Even smaller logo for mobile */
+            }
+            .hero-section, .services-section, .about-section, .testimonials-section {
+                padding: 50px 0; /* Reduce massive spacing on mobile */
+            }
+            .hero-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+            .hero-subtitle {
+                text-align: center;
+            }
+            .hero-section .d-flex.gap-3 {
+                flex-direction: column; /* Stack buttons vertically */
+                align-items: center;
+            }
+            .hero-section .btn {
+                width: 100%;
+                max-width: 280px; /* Uniform button widths */
+            }
+            .hero-features {
+                justify-content: center; /* Center icons */
+            }
+            .section-title {
+                font-size: 1.75rem;
+                margin-bottom: 30px;
+            }
+            .services-section .d-flex {
+                flex-direction: column;
+                align-items: center !important;
+                text-align: center;
+            }
+            .about-img {
+                margin-bottom: 30px;
+            }
+            .priority-card {
+                padding: 20px;
+            }
+            .stats-section .stat-item {
+                margin-bottom: 10px;
+            }
+            .footer {
+                padding: 50px 0 20px;
+            }
+            .bottom-bar {
+                text-align: center;
+            }
+            .bottom-bar .d-flex {
+                justify-content: center;
+                margin-top: 10px;
             }
         }
     </style>
@@ -492,8 +578,8 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
            <a class="navbar-brand" href="#">
-    <img src="header (2).png" alt="Mullapudi Dental Clinic Logo" style="height: 95px; width: auto; object-fit: contain;">
-</a>
+               <img src="header (2).png" alt="Mullapudi Dental Clinic Logo" class="brand-logo">
+           </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -519,7 +605,7 @@
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                 </ul>
-                <a href="#appointment" class="btn btn-teal"><i class="fa-regular fa-calendar-check me-2"></i>Book Appointment</a>
+                <a href="#appointment" class="btn btn-teal mt-3 mt-lg-0 w-100 w-lg-auto text-center"><i class="fa-regular fa-calendar-check me-2"></i>Book Appointment</a>
             </div>
         </div>
     </nav>
@@ -536,11 +622,11 @@
 
     <section id="home" class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+            <div class="row align-items-center flex-column-reverse flex-lg-row">
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-right">
                     <h1 class="hero-title">Your Smile,<br><span>Our Passion</span></h1>
                     <p class="hero-subtitle">Advanced dental care in a comfortable environment for a healthy, confident smile.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex gap-3 mb-4">
                         <a href="#appointment" class="btn btn-teal"><i class="fa-regular fa-calendar-check me-2"></i>Book Appointment</a>
                         <button class="btn btn-outline-teal" onclick="alert('Video Modal will open here.')"><i class="fa-regular fa-circle-play me-2"></i>Watch Video</button>
                     </div>
@@ -570,7 +656,7 @@
 
     <section id="services" class="services-section">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-end mb-5">
+            <div class="d-flex justify-content-between align-items-end mb-4 mb-md-5">
                 <div data-aos="fade-up">
                     <span class="section-subtitle">Our Services</span>
                     <h2 class="section-title mb-0">Complete Dental Care for Every Smile</h2>
@@ -644,16 +730,19 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-4 d-md-none">
+                <a href="#services" class="btn btn-outline-teal w-100">View All Services <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            </div>
         </div>
     </section>
 
     <section id="about" class="about-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
+                <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
                     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clinic Interior" class="about-img">
                 </div>
-                <div class="col-lg-4 px-lg-4" data-aos="fade-up">
+                <div class="col-lg-4 px-lg-4 mb-4 mb-lg-0" data-aos="fade-up">
                     <span class="section-subtitle">About Us</span>
                     <h2 class="section-title mb-3">Welcome to MULLAPUDI DENTAL CLINIC</h2>
                     <p class="text-muted mb-4">We are committed to providing exceptional dental care with modern technology and a patient-first approach. Our mission is to create beautiful smiles and healthy lives.</p>
@@ -665,9 +754,9 @@
                         <li><i class="fa-regular fa-circle-check"></i> Affordable care with transparent pricing</li>
                     </ul>
                     
-                    <button class="btn btn-teal mt-3">Know More About Us <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                    <button class="btn btn-teal mt-3 w-100 d-md-inline w-md-auto">Know More About Us <i class="fa-solid fa-arrow-right ms-2"></i></button>
                 </div>
-                <div class="col-lg-3 mt-4 mt-lg-0" data-aos="fade-left">
+                <div class="col-lg-3" data-aos="fade-left">
                     <div class="priority-card h-100 d-flex flex-column justify-content-center">
                         <i class="fa-regular fa-face-smile-beam"></i>
                         <h4 class="fw-bold" style="color: var(--dark-blue);">Your Smile<br>Is Our Priority</h4>
@@ -685,36 +774,36 @@
         <div class="container">
             <div class="row text-center text-lg-start">
                 <div class="col-lg-3 col-6 mb-4 mb-lg-0">
-                    <div class="stat-item justify-content-center justify-content-lg-start">
-                        <i class="fa-solid fa-user-doctor stat-icon"></i>
-                        <div class="stat-content">
+                    <div class="stat-item flex-column flex-md-row justify-content-center justify-content-lg-start">
+                        <i class="fa-solid fa-user-doctor stat-icon mb-2 mb-md-0"></i>
+                        <div class="stat-content text-center text-md-start">
                             <h2 class="counter" data-target="15">0</h2>+
                             <p>Years of Experience</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6 mb-4 mb-lg-0">
-                    <div class="stat-item justify-content-center justify-content-lg-start">
-                        <i class="fa-solid fa-users stat-icon"></i>
-                        <div class="stat-content">
+                    <div class="stat-item flex-column flex-md-row justify-content-center justify-content-lg-start">
+                        <i class="fa-solid fa-users stat-icon mb-2 mb-md-0"></i>
+                        <div class="stat-content text-center text-md-start">
                             <h2 class="counter" data-target="5000">0</h2>+
                             <p>Happy Patients</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="stat-item justify-content-center justify-content-lg-start">
-                        <i class="fa-solid fa-tooth stat-icon"></i>
-                        <div class="stat-content">
+                    <div class="stat-item flex-column flex-md-row justify-content-center justify-content-lg-start">
+                        <i class="fa-solid fa-tooth stat-icon mb-2 mb-md-0"></i>
+                        <div class="stat-content text-center text-md-start">
                             <h2 class="counter" data-target="8">0</h2>
                             <p>Advanced Services</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="stat-item justify-content-center justify-content-lg-start border-0">
-                        <i class="fa-solid fa-award stat-icon"></i>
-                        <div class="stat-content">
+                    <div class="stat-item flex-column flex-md-row justify-content-center justify-content-lg-start border-0">
+                        <i class="fa-solid fa-award stat-icon mb-2 mb-md-0"></i>
+                        <div class="stat-content text-center text-md-start">
                             <h2 class="counter" data-target="98">0</h2>%
                             <p>Patient Satisfaction</p>
                         </div>
@@ -726,7 +815,7 @@
 
     <section class="testimonials-section">
         <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
+            <div class="text-center mb-4" data-aos="fade-up">
                 <span class="section-subtitle">Testimonials</span>
                 <h2 class="section-title">What Our Patients Say</h2>
             </div>
@@ -802,8 +891,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next d-none d-md-flex"></div>
+                <div class="swiper-button-prev d-none d-md-flex"></div>
             </div>
         </div>
     </section>
@@ -814,8 +903,8 @@
                 <div class="col-lg-6 p-0 d-none d-lg-block">
                     <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Book Appointment" style="width: 100%; height: 100%; object-fit: cover; min-height: 500px;">
                 </div>
-                <div class="col-lg-6 p-5">
-                    <h3 class="fw-bold mb-4" style="color: var(--dark-blue);">Book Your Appointment</h3>
+                <div class="col-lg-6 p-4 p-md-5">
+                    <h3 class="fw-bold mb-4 text-center text-lg-start" style="color: var(--dark-blue);">Book Your Appointment</h3>
                     <form id="appointmentForm" onsubmit="handleFormSubmit(event)">
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -859,25 +948,25 @@
     <footer id="contact" class="footer">
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="d-flex align-items-center gap-2 mb-4">
+                <div class="col-lg-3 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-4">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 22C10.5 22 9 20 9 18C9 16.5 10 15 10 15C10 15 8 16 6 16C4 16 2 13 2 10C2 5 6 2 12 2C18 2 22 5 22 10C22 13 20 16 18 16C16 16 14 15 14 15C14 15 15 16.5 15 18C15 20 13.5 22 12 22Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <div>
+                        <div class="text-start">
                             <h5 class="m-0 fw-bold text-white" style="font-size: 1.2rem;">MULLAPUDI</h5>
                             <small class="m-0 text-white" style="font-size: 0.7rem; font-weight: 600;">DENTAL CLINIC</small>
                         </div>
                     </div>
                     <p style="color: #a0aec0; font-size: 0.9rem;">We provide complete dental care with advanced technology in a comfortable and friendly environment.</p>
-                    <div class="social-icons d-flex gap-3 mt-4">
+                    <div class="social-icons d-flex gap-3 justify-content-center justify-content-md-start mt-4">
                         <a href="#" class="btn btn-outline-light rounded-circle" style="width: 40px; height: 40px; display: flex; align-items:center; justify-content:center;"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#" class="btn btn-outline-light rounded-circle" style="width: 40px; height: 40px; display: flex; align-items:center; justify-content:center;"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://wa.me/918019191416" class="btn btn-outline-light rounded-circle" style="width: 40px; height: 40px; display: flex; align-items:center; justify-content:center;"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-2 col-md-6 text-center text-md-start">
                     <h5>Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
@@ -889,7 +978,7 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-2 col-md-6 text-center text-md-start">
                     <h5>Our Services</h5>
                     <ul class="footer-links">
                         <li><a href="#">Implant Dentistry</a></li>
@@ -903,18 +992,18 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 text-center text-md-start">
                     <h5>Contact Us</h5>
                     <ul class="contact-info list-unstyled">
-                        <li>
+                        <li class="justify-content-center justify-content-md-start">
                             <i class="fa-solid fa-location-dot mt-1"></i>
                             <span>Ground floor, Anuhar Art of living,<br>Rd number 25, Alkapur Township,<br>Mahalakneknapur,<br>Hyderabad, Telangana 500089</span>
                         </li>
-                        <li>
+                        <li class="justify-content-center justify-content-md-start">
                             <i class="fa-solid fa-phone"></i>
                             <a href="tel:8019191416" style="color: #a0aec0; text-decoration: none;">8019191416</a>
                         </li>
-                        <li>
+                        <li class="justify-content-center justify-content-md-start">
                             <i class="fa-regular fa-clock"></i>
                             <span>9:00 AM to 8:00 PM<br>(Mon - Sun)</span>
                         </li>
@@ -922,7 +1011,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-6">
-                    <h5>Book Appointment</h5>
+                    <h5 class="text-center text-md-start">Book Appointment</h5>
                     <form onsubmit="handleFormSubmit(event)">
                         <div class="mb-2">
                             <input type="text" class="form-control form-control-sm form-control-dark" placeholder="Your Name" required>
@@ -938,7 +1027,7 @@
                 </div>
             </div>
 
-            <div class="bottom-bar d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="bottom-bar d-flex flex-column flex-md-row justify-content-between align-items-center mt-5 pt-3 border-top border-secondary">
                 <p class="mb-2 mb-md-0">© 2026 MULLAPUDI DENTAL CLINIC. All Rights Reserved.</p>
                 <div class="d-flex gap-3">
                     <a href="#" class="text-decoration-none" style="color: #a0aec0;">Privacy Policy</a> |
@@ -968,18 +1057,22 @@
         AOS.init({
             duration: 800,
             once: true,
-            offset: 100
+            offset: 50 // reduced offset for earlier triggering on mobile
         });
 
         // Initialize Swiper for Testimonials
         var swiper = new Swiper(".testimonialSwiper", {
             slidesPerView: 1,
-            spaceBetween: 30,
+            spaceBetween: 20,
             autoplay: {
                 delay: 4000,
                 disableOnInteraction: false,
             },
             loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -987,9 +1080,11 @@
             breakpoints: {
                 768: {
                     slidesPerView: 2,
+                    spaceBetween: 30,
                 },
                 1024: {
                     slidesPerView: 3,
+                    spaceBetween: 30,
                 },
             },
         });
@@ -1021,7 +1116,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.2 });
 
         document.querySelector('.stats-section') && observer.observe(document.querySelector('.stats-section'));
 
@@ -1042,6 +1137,14 @@
                 const targetId = this.getAttribute('href');
                 if (targetId !== '#' && document.querySelector(targetId)) {
                     e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    const navbarCollapse = document.getElementById('navbarNav');
+                    if(navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
+                    }
+
                     document.querySelector(targetId).scrollIntoView({
                         behavior: 'smooth'
                     });
